@@ -1,0 +1,5 @@
+.idea
+.vscode
+.git
+docker-compose.yml
+docker

@@ -1,0 +1,87 @@
+version: '3'
+services:
+  api:
+    build:
+      dockerfile: ./dockerfiles/php/Dockerfile
+    image: smile_api
+    container_name: smile.api
+    ports:
+      - "80:9000"
+    volumes:
+      - ./api:/var/www/html
+    depends_on:
+      - mysql
+    networks:
+      - private_net
+
+  mysql:
+    image: mariadb:10.6
+    container_name: smile.mysql
+    restart: "no"
+    tty: true
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    networks:
+      - private_net
+
+  composer:
+    build:
+      context: ./dockerfiles
+      dockerfile: composer/Dockerfile
+    container_name: smile.composer
+    volumes:
+      - ./api:/var/www/html
+    working_dir: /var/www/html
+    depends_on:
+      - api
+    user: composer
+    entrypoint: [ 'composer', '--ignore-platform-reqs' ]
+    networks:
+      - private_net
+
+  npm:
+    build:
+      context: ./dockerfiles
+      dockerfile: ./npm/Dockerfile
+    container_name: smile.npm
+    volumes:
+      - ./api:/var/www/html
+    working_dir: /var/www/html
+    entrypoint: [ 'npm' ]
+    networks:
+      - private_net
+
+  artisan:
+    image: smile_api
+    container_name: smile.artisan
+    volumes:
+      - ./api:/var/www/html
+    depends_on:
+      - mysql
+    working_dir: /var/www/html
+    entrypoint: [ 'php', '/var/www/html/artisan' ]
+    networks:
+      - private_net
+
+  git:
+    image: alpine/git
+    container_name: smile.git
+    volumes:
+      - $HOME/.ssh:/root/.ssh
+      - ./:/home/git
+    working_dir: /home/git
+    networks:
+      - private_net
+
+networks:
+  private_net:
+    driver: bridge

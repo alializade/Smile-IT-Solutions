@@ -1,0 +1,7 @@
+.idea/
+
+mysql/
+!mysql/.gitkeep
+
+api/horizon.log
+api/scheduler.log

@@ -10,5 +10,10 @@ Route::prefix('/api/v1')
 
          Route::post('/customers', [CustomersController::class, 'store']);
 
+         Route::get(
+             '/customers/{customer}/accounts',
+             [CustomerBankAccountsController::class, 'index']
+         );
+
          Route::get('/accounts/{account}', [CustomerBankAccountsController::class, 'show']);
      });

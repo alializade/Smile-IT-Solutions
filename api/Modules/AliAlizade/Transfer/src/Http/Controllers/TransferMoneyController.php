@@ -31,10 +31,13 @@ class TransferMoneyController extends Controller
     {
         $amount = $request->get('amount');
 
-        [$from_account, $to_account] = Account::whereIn('account_number', [
-            $request->get('from'),
-            $request->get('to'),
-        ])->get();
+        $from_account = Account::firstWhere(
+            'account_number', $request->get('from')
+        );
+
+        $to_account = Account::firstWhere(
+            'account_number', $request->get('to')
+        );
 
         abort_if(
             !$from_account->isAbleToTransfer($amount),

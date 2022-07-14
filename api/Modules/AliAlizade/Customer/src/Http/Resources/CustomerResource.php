@@ -17,7 +17,6 @@ class CustomerResource extends JsonResource
         return [
             'id'   => $this->id,
             'name' => $this->name,
-            // todo: get all related accounts
         ];
     }
 }

@@ -22,13 +22,12 @@ class AccountResource extends JsonResource
     public function toArray($request): array
     {
         return [
-            'id'             => $this->id,
-            'customer'       => $this->whenLoaded('customer',
-                fn() => new CustomerResource($this->customer)
-            ),
             'account_number' => $this->account_number,
             'currency'       => $this->currency,
             'current_amount' => $this->current_amount,
+            'customer'       => $this->whenLoaded('customer',
+                fn() => new CustomerResource($this->customer)
+            ),
         ];
     }
 }

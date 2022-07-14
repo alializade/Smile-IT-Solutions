@@ -5,7 +5,6 @@ namespace AliAlizade\Transfer\Tests\Feature;
 use AliAlizade\Customer\Models\Account;
 use AliAlizade\Customer\Models\Customer;
 use AliAlizade\Transfer\Enums\TransactionStatusEnum;
-use AliAlizade\Transfer\Models\Transaction;
 use AliAlizade\Transfer\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\Fluent\AssertableJson;
@@ -14,7 +13,6 @@ class TransferMoneyTest extends TestCase
 {
     use RefreshDatabase;
 
-    // todo: test if currencies are the same
     public function test_money_can_be_transferred_between_two_customers()
     {
         /** @var Customer $customerA */

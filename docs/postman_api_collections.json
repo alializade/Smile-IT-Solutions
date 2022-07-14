@@ -1,0 +1,1780 @@
+{
+	"info": {
+		"_postman_id": "2c3d3034-9639-4d18-b06c-545285e8a708",
+		"name": "Smile IT Solutions",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6490686"
+	},
+	"item": [
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Ali Alizade",
+									"description": "Customer's Full Name - ['required', 'string', 'min:3', 'max:255',]",
+									"type": "text"
+								},
+								{
+									"key": "initial_deposit_amount",
+									"value": "50",
+									"description": "['required', 'numeric', 'min:15', 'max:1000']",
+									"type": "text"
+								},
+								{
+									"key": "currency",
+									"value": "USD",
+									"description": "['required', 'string', 'USD, EUR, GBP, CAD']",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/customers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create - success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Ali Alizade",
+											"description": "Customer's Full Name - ['required', 'string', 'min:3', 'max:255',]",
+											"type": "text"
+										},
+										{
+											"key": "initial_deposit_amount",
+											"value": "50",
+											"description": "['required', 'numeric', 'min:15', 'max:1000']",
+											"type": "text"
+										},
+										{
+											"key": "currency",
+											"value": "USD",
+											"description": "['required', 'string', 'USD, EUR, GBP, CAD']",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/customers",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Jul 2022 17:02:41 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-Ratelimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-Ratelimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "OpenSwoole 4.11.1"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Ok\",\n    \"data\": {\n        \"customer\": {\n            \"id\": 5,\n            \"name\": \"Ali Alizade\"\n        },\n        \"account\": {\n            \"account_number\": \"51657818161\",\n            \"currency\": \"USD\",\n            \"current_amount\": 50\n        }\n    }\n}"
+						},
+						{
+							"name": "create - initial deposit error: required",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Ali Alizade",
+											"description": "Customer's Full Name - ['required', 'string', 'min:3', 'max:255',]",
+											"type": "text"
+										},
+										{
+											"key": "",
+											"value": "",
+											"description": "['required', 'numeric', 'min:15', 'max:1000']",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/customers",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Jul 2022 16:55:41 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-Ratelimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-Ratelimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "OpenSwoole 4.11.1"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Failed\",\n    \"errors\": {\n        \"message\": \"The initial deposit amount field is required.\"\n    }\n}"
+						},
+						{
+							"name": "create - name error: required",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "initial_deposit_amount",
+											"value": "500",
+											"description": "['required', 'numeric', 'min:15', 'max:1000']",
+											"type": "text"
+										},
+										{
+											"key": "currency",
+											"value": "USD",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/customers",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Jul 2022 16:57:24 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-Ratelimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-Ratelimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "OpenSwoole 4.11.1"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Failed\",\n    \"errors\": {\n        \"message\": \"The name field is required.\"\n    }\n}"
+						},
+						{
+							"name": "create - initial deposit error: at least 15",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Ali Alizade",
+											"description": "Customer's Full Name - ['required', 'string', 'min:3', 'max:255',]",
+											"type": "text"
+										},
+										{
+											"key": "initial_deposit_amount",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "currency",
+											"value": "USD",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/customers",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Jul 2022 16:58:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-Ratelimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-Ratelimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "OpenSwoole 4.11.1"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Failed\",\n    \"errors\": {\n        \"message\": \"The initial deposit amount must be at least 15.\"\n    }\n}"
+						},
+						{
+							"name": "create - currency error: required",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Ali Alizade",
+											"description": "Customer's Full Name - ['required', 'string', 'min:3', 'max:255',]",
+											"type": "text"
+										},
+										{
+											"key": "initial_deposit_amount",
+											"value": "50",
+											"description": "['required', 'numeric', 'min:15', 'max:1000']",
+											"type": "text"
+										},
+										{
+											"key": "currency",
+											"value": "USD",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/customers",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Jul 2022 17:00:17 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-Ratelimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-Ratelimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "OpenSwoole 4.11.1"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Failed\",\n    \"errors\": {\n        \"message\": \"The currency field is required.\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Accounts",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "customer_id",
+									"value": "2",
+									"description": "['required', Rule::exists('customers', 'id')]",
+									"type": "text"
+								},
+								{
+									"key": "initial_deposit_amount",
+									"value": "50",
+									"description": "['required', 'numeric', 'min:15', 'max:1000']",
+									"type": "text"
+								},
+								{
+									"key": "currency",
+									"value": "USD",
+									"description": "['required', 'string', 'USD, EUR, GBP, CAD']",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/accounts",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"accounts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "customer_id",
+											"value": "2",
+											"description": "['required', Rule::exists('customers', 'id')]",
+											"type": "text"
+										},
+										{
+											"key": "initial_deposit_amount",
+											"value": "50",
+											"description": "['required', 'numeric', 'min:15', 'max:1000']",
+											"type": "text"
+										},
+										{
+											"key": "currency",
+											"value": "USD",
+											"description": "['required', 'string', 'USD, EUR, GBP, CAD']",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/accounts",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"accounts"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Jul 2022 18:09:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-Ratelimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-Ratelimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "OpenSwoole 4.11.1"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Ok\",\n    \"data\": {\n        \"customer\": {\n            \"id\": 2,\n            \"name\": \"Branden Gibson\"\n        },\n        \"account\": {\n            \"account_number\": \"21657822183\",\n            \"currency\": \"USD\",\n            \"current_amount\": 50\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/v1/accounts/51657818161",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"51657818161"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get balance of an account",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/accounts/51657818161",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"accounts",
+										"51657818161"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Jul 2022 17:07:53 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-Ratelimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-Ratelimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "OpenSwoole 4.11.1"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Ok\",\n    \"data\": {\n        \"account\": {\n            \"account_number\": 51657818161,\n            \"currency\": \"USD\",\n            \"current_amount\": 50,\n            \"customer\": {\n                \"id\": 5,\n                \"name\": \"Ali Alizade\"\n            }\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/v1/customers/2/accounts",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"2",
+								"accounts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "customer account",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/customers/5/accounts",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										"5",
+										"accounts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Jul 2022 17:05:45 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-Ratelimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-Ratelimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "OpenSwoole 4.11.1"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Ok\",\n    \"data\": {\n        \"total_balance\": 50,\n        \"accounts\": [\n            {\n                \"account_number\": 51657818161,\n                \"currency\": \"USD\",\n                \"current_amount\": 50\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "customer with multiple accounts",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/customers/3/accounts",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										"3",
+										"accounts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Jul 2022 17:27:14 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-Ratelimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-Ratelimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "OpenSwoole 4.11.1"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Ok\",\n    \"data\": {\n        \"total_balance\": 670,\n        \"accounts\": [\n            {\n                \"account_number\": 31657819332,\n                \"currency\": \"USD\",\n                \"current_amount\": 290\n            },\n            {\n                \"account_number\": 41657819332,\n                \"currency\": \"USD\",\n                \"current_amount\": 380\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "history",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/accounts/31657819332/history",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"31657819332",
+								"history"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v1/accounts/31657819332/history",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"accounts",
+										"31657819332",
+										"history"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Jul 2022 17:32:44 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-Ratelimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-Ratelimit-Remaining",
+									"value": "53"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "OpenSwoole 4.11.1"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Ok\",\n    \"data\": {\n        \"history\": [\n            {\n                \"tid\": \"7113761\",\n                \"from\": 31657819332,\n                \"to\": 21657819332,\n                \"amount\": 100,\n                \"status\": \"SUCCESS\",\n                \"created_at\": \"2022-07-14T17:24:05.000000Z\"\n            },\n            {\n                \"tid\": \"9004280\",\n                \"from\": 31657819332,\n                \"to\": 11657819332,\n                \"amount\": 50,\n                \"status\": \"SUCCESS\",\n                \"created_at\": \"2022-07-14T17:24:42.000000Z\"\n            },\n            {\n                \"tid\": \"9030862\",\n                \"from\": 31657819332,\n                \"to\": 41657819332,\n                \"amount\": 80,\n                \"status\": \"SUCCESS\",\n                \"created_at\": \"2022-07-14T17:25:26.000000Z\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Transfer",
+			"item": [
+				{
+					"name": "Transfer Money",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "from",
+									"value": "31657819332",
+									"description": "from an account using its account_number - ['required', Rule::exists('accounts', 'account_number'), 'different:to']",
+									"type": "text"
+								},
+								{
+									"key": "to",
+									"value": "41657819332",
+									"description": "to an account using its account_number - ['required', Rule::exists('accounts', 'account_number')]",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "80",
+									"description": "amount of transaction - both accounts must have same currency type - ['required', 'numeric']",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/transfer",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transfer"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "from",
+											"value": "31657819332",
+											"description": "from an account using its account_number - ['required', Rule::exists('accounts', 'account_number'), 'different:to']",
+											"type": "text"
+										},
+										{
+											"key": "to",
+											"value": "21657819332",
+											"description": "to an account using its account_number - ['required', Rule::exists('accounts', 'account_number')]",
+											"type": "text"
+										},
+										{
+											"key": "amount",
+											"value": "100",
+											"description": "amount of transaction - both accounts must have same currency type - ['required', 'numeric']",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/transfer",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transfer"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Jul 2022 17:24:05 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "OpenSwoole 4.11.1"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Ok\",\n    \"data\": {\n        \"transaction\": {\n            \"tid\": 7113761,\n            \"from\": \"31657819332\",\n            \"to\": \"21657819332\",\n            \"amount\": 100,\n            \"status\": \"SUCCESS\",\n            \"created_at\": \"2022-07-14T17:24:05.000000Z\"\n        }\n    }\n}"
+						},
+						{
+							"name": "success: transfer money to the same owner",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "from",
+											"value": "31657819332",
+											"description": "from an account using its account_number - ['required', Rule::exists('accounts', 'account_number'), 'different:to']",
+											"type": "text"
+										},
+										{
+											"key": "to",
+											"value": "41657819332",
+											"description": "to an account using its account_number - ['required', Rule::exists('accounts', 'account_number')]",
+											"type": "text"
+										},
+										{
+											"key": "amount",
+											"value": "80",
+											"description": "amount of transaction - both accounts must have same currency type - ['required', 'numeric']",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/transfer",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transfer"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Jul 2022 17:25:26 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "OpenSwoole 4.11.1"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Ok\",\n    \"data\": {\n        \"transaction\": {\n            \"tid\": 9030862,\n            \"from\": \"31657819332\",\n            \"to\": \"41657819332\",\n            \"amount\": 80,\n            \"status\": \"SUCCESS\",\n            \"created_at\": \"2022-07-14T17:25:26.000000Z\"\n        }\n    }\n}"
+						},
+						{
+							"name": "error: from account number required",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "from",
+											"value": "",
+											"description": "from an account using its account_number - ['required', Rule::exists('accounts', 'account_number'), 'different:to']",
+											"type": "text"
+										},
+										{
+											"key": "to",
+											"value": "",
+											"description": "to an account using its account_number - ['required', Rule::exists('accounts', 'account_number')]",
+											"type": "text"
+										},
+										{
+											"key": "amount",
+											"value": "",
+											"description": "amount of transaction - both accounts must have same currency type - ['required', 'numeric']",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/transfer",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transfer"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Jul 2022 17:12:57 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "OpenSwoole 4.11.1"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Failed\",\n    \"errors\": {\n        \"message\": \"The from account number field is required.\"\n    }\n}"
+						},
+						{
+							"name": "error: to account number  required",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "from",
+											"value": "51657818161",
+											"description": "from an account using its account_number - ['required', Rule::exists('accounts', 'account_number'), 'different:to']",
+											"type": "text"
+										},
+										{
+											"key": "to",
+											"value": "",
+											"description": "to an account using its account_number - ['required', Rule::exists('accounts', 'account_number')]",
+											"type": "text"
+										},
+										{
+											"key": "amount",
+											"value": "",
+											"description": "amount of transaction - both accounts must have same currency type - ['required', 'numeric']",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/transfer",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transfer"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Jul 2022 17:13:28 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "OpenSwoole 4.11.1"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Failed\",\n    \"errors\": {\n        \"message\": \"The to account number field is required.\"\n    }\n}"
+						},
+						{
+							"name": "error: amount required",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "from",
+											"value": "31657819332",
+											"description": "from an account using its account_number - ['required', Rule::exists('accounts', 'account_number'), 'different:to']",
+											"type": "text"
+										},
+										{
+											"key": "to",
+											"value": "21657819332",
+											"description": "to an account using its account_number - ['required', Rule::exists('accounts', 'account_number')]",
+											"type": "text"
+										},
+										{
+											"key": "amount",
+											"value": "",
+											"description": "amount of transaction - both accounts must have same currency type - ['required', 'numeric']",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/transfer",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transfer"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Jul 2022 17:22:40 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "OpenSwoole 4.11.1"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Failed\",\n    \"errors\": {\n        \"message\": \"The amount field is required.\"\n    }\n}"
+						},
+						{
+							"name": "error: from account number and to account number must be different.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "from",
+											"value": "31657819332",
+											"description": "from an account using its account_number - ['required', Rule::exists('accounts', 'account_number'), 'different:to']",
+											"type": "text"
+										},
+										{
+											"key": "to",
+											"value": "31657819332",
+											"description": "to an account using its account_number - ['required', Rule::exists('accounts', 'account_number')]",
+											"type": "text"
+										},
+										{
+											"key": "amount",
+											"value": "40",
+											"description": "amount of transaction - both accounts must have same currency type - ['required', 'numeric']",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/transfer",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transfer"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Jul 2022 17:23:20 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "OpenSwoole 4.11.1"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Failed\",\n    \"errors\": {\n        \"message\": \"The from account number and to account number must be different.\"\n    }\n}"
+						},
+						{
+							"name": "error: from account number is invalid.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "from",
+											"value": "3165781933223",
+											"description": "from an account using its account_number - ['required', Rule::exists('accounts', 'account_number'), 'different:to']",
+											"type": "text"
+										},
+										{
+											"key": "to",
+											"value": "31657819332",
+											"description": "to an account using its account_number - ['required', Rule::exists('accounts', 'account_number')]",
+											"type": "text"
+										},
+										{
+											"key": "amount",
+											"value": "40",
+											"description": "amount of transaction - both accounts must have same currency type - ['required', 'numeric']",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/transfer",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transfer"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Jul 2022 17:23:39 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "OpenSwoole 4.11.1"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Failed\",\n    \"errors\": {\n        \"message\": \"The selected from account number is invalid.\"\n    }\n}"
+						},
+						{
+							"name": "error: Insufficient Money",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "from",
+											"value": "31657819332",
+											"description": "from an account using its account_number - ['required', Rule::exists('accounts', 'account_number'), 'different:to']",
+											"type": "text"
+										},
+										{
+											"key": "to",
+											"value": "41657819332",
+											"description": "to an account using its account_number - ['required', Rule::exists('accounts', 'account_number')]",
+											"type": "text"
+										},
+										{
+											"key": "amount",
+											"value": "1500",
+											"description": "amount of transaction - both accounts must have same currency type - ['required', 'numeric']",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/transfer",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transfer"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Jul 2022 17:34:28 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "OpenSwoole 4.11.1"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Failed\",\n    \"errors\": {\n        \"message\": \"Insufficient Money!\"\n    }\n}"
+						},
+						{
+							"name": "error: differnent currency type",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "from",
+											"value": "31657819332",
+											"description": "from an account using its account_number - ['required', Rule::exists('accounts', 'account_number'), 'different:to']",
+											"type": "text"
+										},
+										{
+											"key": "to",
+											"value": "41657819332",
+											"description": "to an account using its account_number - ['required', Rule::exists('accounts', 'account_number')]",
+											"type": "text"
+										},
+										{
+											"key": "amount",
+											"value": "15",
+											"description": "amount of transaction - both accounts must have same currency type - ['required', 'numeric']",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/transfer",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transfer"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Jul 2022 17:36:11 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "OpenSwoole 4.11.1"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Failed\",\n    \"errors\": {\n        \"message\": \"Accounts don't have same the currency!\"\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}

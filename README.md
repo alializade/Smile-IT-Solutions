@@ -28,6 +28,10 @@ Navigate to the cloned project, then run the `installer.sh`:
 
 - Import `./docs/postman_api_collections.json` file to the Postman application
 
+
+- https://documenter.getpostman.com/view/6490686/UzQuPknf
+
+
 ### Notes
 
 - I know that in professional code, consistency is imperative, so if you see different approaches to

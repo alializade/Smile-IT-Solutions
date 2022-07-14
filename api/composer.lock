@@ -4,8 +4,33 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1d9cca28bab7a3c83887d5042e18548e",
+    "content-hash": "bdddbbbb62d64bc6fcd7286cf07ba856",
     "packages": [
+        {
+            "name": "alializade/customer",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "./Modules/AliAlizade/Customer",
+                "reference": "ac623135d87a5398b71b2e1d62678ca78a2f3be8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AliAlizade\\Customer\\": "src/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Ali Alizade",
+                    "email": "ali.alizade@outlook.com"
+                }
+            ],
+            "description": "Customer Module",
+            "transport-options": {
+                "relative": true
+            }
+        },
         {
             "name": "brick/math",
             "version": "0.9.3",
@@ -8027,7 +8052,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "alializade/customer": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

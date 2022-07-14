@@ -1,0 +1,16 @@
+{
+  "name": "alializade/customer",
+  "description": "Customer Module",
+  "autoload": {
+    "psr-4": {
+      "AliAlizade\\Customer\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Ali Alizade",
+      "email": "ali.alizade@outlook.com"
+    }
+  ],
+  "require": {}
+}

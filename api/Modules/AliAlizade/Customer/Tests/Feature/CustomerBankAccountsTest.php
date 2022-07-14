@@ -7,6 +7,7 @@ use AliAlizade\Customer\Models\Customer;
 use AliAlizade\Customer\Tests\TestCase;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Testing\Fluent\AssertableJson;
 
 class CustomerBankAccountsTest extends TestCase
 {
@@ -73,4 +74,42 @@ class CustomerBankAccountsTest extends TestCase
                      ],
                  ]);
     }
+
+    public function test_an_existed_customer_can_create_new_bank_accounts()
+    {
+        $this->withoutExceptionHandling();
+
+        $customer = Customer::factory()->create();
+
+        $data = [
+            'initial_deposit_amount' => 150,
+            'currency'               => 'USD',
+            'customer_id'            => $customer->id,
+        ];
+
+        $response = $this->json(
+            'post',
+            '/api/v1/accounts',
+            $data
+        );
+
+        $this->assertDatabaseHas('accounts', [
+            'customer_id'    => $customer->id,
+            'current_amount' => $data['initial_deposit_amount'],
+            'currency'       => $data['currency'],
+        ]);
+
+
+        $response->assertStatus(201)
+                 ->assertJson(function (AssertableJson $json) use ($data, $customer) {
+                     return $json->hasAll('status', 'data.customer',
+                         'data.account.account_number')
+                                 ->where('data.customer.name', $customer->name)
+                                 ->where('data.account.currency', $data['currency'])
+                                 ->where('data.account.current_amount',
+                                     $data['initial_deposit_amount'])
+                                 ->etc();
+                 });
+    }
+
 }

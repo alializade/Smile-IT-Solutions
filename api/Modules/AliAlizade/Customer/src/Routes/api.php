@@ -18,6 +18,7 @@ Route::prefix('/api/v1')
          );
 
          Route::get('/accounts/{account}', [CustomerBankAccountsController::class, 'show']);
+         Route::post('/accounts', [CustomerBankAccountsController::class, 'store']);
 
          Route::get(
              '/accounts/{account}/history',

@@ -22,20 +22,21 @@ class SaveTransferRecordsAction
 
         try {
             DB::beginTransaction();
-            [$_, $_, $transaction] = Octane::concurrently(
-                [
-                    fn() => resolve(ProcessAccountWithdrawAction::class)->handle(
-                        account_number: $data['from'],
-                        amount        : $data['amount']
-                    ),
-                    fn() => resolve(ProcessAccountDepositAction::class)->handle(
-                        account_number: $data['to'],
-                        amount        : $data['amount']
-                    ),
-                    fn() => resolve(SaveTransactionAction::class)->handle(
-                        input: $data
-                    ),
-                ]);
+
+            resolve(ProcessAccountWithdrawAction::class)->handle(
+                account_number: $data['from'],
+                amount        : $data['amount']
+            );
+
+            resolve(ProcessAccountDepositAction::class)->handle(
+                account_number: $data['to'],
+                amount        : $data['amount']
+            );
+
+            $transaction = resolve(SaveTransactionAction::class)->handle(
+                input: $data
+            );
+
             DB::commit();
 
         } catch (TaskException | TaskTimeoutException | Throwable $e) {

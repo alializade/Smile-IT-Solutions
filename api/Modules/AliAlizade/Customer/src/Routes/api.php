@@ -11,6 +11,7 @@ Route::prefix('/api/v1')
 
          Route::post('/customers', [CustomersController::class, 'store']);
 
+         // todo: create new account
          Route::get(
              '/customers/{customer}/accounts',
              [CustomerBankAccountsController::class, 'index']

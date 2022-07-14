@@ -5,8 +5,8 @@ namespace AliAlizade\Transfer\Http\Controllers;
 use AliAlizade\Customer\Models\Account;
 use AliAlizade\Transfer\Actions\SaveTransferRecordsAction;
 use AliAlizade\Transfer\Http\Resources\TransactionResource;
+use AliAlizade\Transfer\Requests\TransferMoneyRequest;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TransferMoneyRequest;
 use Throwable;
 
 class TransferMoneyController extends Controller

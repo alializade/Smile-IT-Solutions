@@ -196,6 +196,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         \AliAlizade\Customer\Providers\CustomerServiceProvider::class,
+        \AliAlizade\Transfer\Providers\TransferServiceProvider::class,
     ],
 
     /*

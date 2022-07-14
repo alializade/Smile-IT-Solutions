@@ -10,6 +10,7 @@
   "require": {
     "php": "^8.0.2",
     "alializade/customer": "@dev",
+    "alializade/transfer": "@dev",
     "guzzlehttp/guzzle": "^7.2",
     "laravel/framework": "^9.19",
     "laravel/octane": "^1.2",
@@ -30,7 +31,10 @@
       "App\\": "app/",
       "Database\\Factories\\": "database/factories/",
       "Database\\Seeders\\": "database/seeders/"
-    }
+    },
+    "files": [
+      "app/Helpers/api-helpers.php"
+    ]
   },
   "autoload-dev": {
     "psr-4": {
@@ -49,7 +53,9 @@
   "scripts": {
     "post-autoload-dump": [
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-      "@php artisan package:discover --ansi"
+      "@php artisan package:discover --ansi",
+      "@php artisan ide-helper:generate",
+      "@php artisan ide-helper:meta"
     ],
     "post-update-cmd": [
       "@php artisan vendor:publish --tag=laravel-assets --ansi --force"

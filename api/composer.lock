@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8b7a12b6341a181ab9c6f29dca7d6b4e",
+    "content-hash": "7aa6faf54763f2c1e344e49a1fc463dd",
     "packages": [
         {
             "name": "alializade/customer",
@@ -27,6 +27,31 @@
                 }
             ],
             "description": "Customer Module",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "alializade/transfer",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "./Modules/AliAlizade/Transfer",
+                "reference": "d38cd624a9ca4cd3ca3ee7da2355c333a61b8e0f"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AliAlizade\\Transfer\\": "src/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Ali Alizade",
+                    "email": "ali.alizade@outlook.com"
+                }
+            ],
+            "description": "Transfer Module",
             "transport-options": {
                 "relative": true
             }
@@ -8660,7 +8685,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "alializade/customer": 20
+        "alializade/customer": 20,
+        "alializade/transfer": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

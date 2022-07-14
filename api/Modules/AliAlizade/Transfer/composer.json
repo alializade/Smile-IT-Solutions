@@ -1,0 +1,16 @@
+{
+  "name": "alializade/transfer",
+  "description": "Transfer Module",
+  "autoload": {
+    "psr-4": {
+      "AliAlizade\\Transfer\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Ali Alizade",
+      "email": "ali.alizade@outlook.com"
+    }
+  ],
+  "require": {}
+}

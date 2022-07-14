@@ -8,8 +8,9 @@
   ],
   "license": "MIT",
   "require": {
-    "php": "^8.0.2",
+    "php": "^8.1.0",
     "alializade/customer": "@dev",
+    "alializade/transfer": "@dev",
     "guzzlehttp/guzzle": "^7.2",
     "laravel/framework": "^9.19",
     "laravel/octane": "^1.2",

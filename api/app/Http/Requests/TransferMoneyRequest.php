@@ -17,7 +17,7 @@ class TransferMoneyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'from'   => ['required', Rule::exists('accounts', 'account_number')],
+            'from'   => ['required', Rule::exists('accounts', 'account_number'), 'different:to'],
             'to'     => ['required', Rule::exists('accounts', 'account_number')],
             'amount' => ['required', 'numeric'],
         ];

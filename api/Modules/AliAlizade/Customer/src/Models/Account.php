@@ -18,12 +18,7 @@ class Account extends Model
         'currency'       => CurrencyEnum::class,
     ];
 
-    public static function withNumber(int $account_number): Account
-    {
-        return Account::firstWhere('account_number', $account_number);
-    }
-
-    public function hasAbleToTransfer(int $transfer_amount): bool
+    public function isAbleToTransfer(int $transfer_amount): bool
     {
         return $this->current_amount >= $transfer_amount;
     }

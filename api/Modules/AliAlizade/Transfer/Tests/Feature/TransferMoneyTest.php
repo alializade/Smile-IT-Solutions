@@ -5,6 +5,7 @@ namespace AliAlizade\Transfer\Tests\Feature;
 use AliAlizade\Customer\Models\Account;
 use AliAlizade\Customer\Models\Customer;
 use AliAlizade\Transfer\Enums\TransactionStatusEnum;
+use AliAlizade\Transfer\Models\Transaction;
 use AliAlizade\Transfer\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\Fluent\AssertableJson;
@@ -13,7 +14,6 @@ class TransferMoneyTest extends TestCase
 {
     use RefreshDatabase;
 
-    // todo: test if from and to accounts are the same
     // todo: test if currencies are the same
     public function test_money_can_be_transferred_between_two_customers()
     {
@@ -38,24 +38,24 @@ class TransferMoneyTest extends TestCase
             [
                 'from'   => $customerA->accounts[0]['account_number'],
                 'to'     => $customerB->accounts[0]['account_number'],
-                'amount' => 35,
+                'amount' => 35.22,
             ],
         );
 
         $this->assertDatabaseHas('accounts', [
             'account_number' => $customerA->fresh('accounts')->accounts[0]['account_number'],
-            'current_amount' => 65,
+            'current_amount' => 64.78,
         ]);
 
         $this->assertDatabaseHas('accounts', [
             'account_number' => $customerB->fresh('accounts')->accounts[0]['account_number'],
-            'current_amount' => 35,
+            'current_amount' => 35.22,
         ]);
 
         $this->assertDatabaseHas('transactions', [
             'from'   => $customerA->accounts[0]['account_number'],
             'to'     => $customerB->accounts[0]['account_number'],
-            'amount' => 35,
+            'amount' => 35.22,
             'status' => TransactionStatusEnum::SUCCESS,
         ]);
 
@@ -71,7 +71,7 @@ class TransferMoneyTest extends TestCase
                                      $customerA->accounts[0]['account_number'])
                                  ->where('data.transaction.to',
                                      $customerB->accounts[0]['account_number'])
-                                 ->where('data.transaction.amount', 35)
+                                 ->where('data.transaction.amount', 35.22)
                                  ->where('data.transaction.status',
                                      TransactionStatusEnum::SUCCESS->value);
                  });
@@ -208,6 +208,23 @@ class TransferMoneyTest extends TestCase
                      return $json->hasAll('status')
                                  ->where('errors.message', trans('Insufficient Money!'));
                  });
+
+    }
+
+    public function test_a_customer_can_not_transfer_if_both_account_are_the_same()
+    {
+        $account_number = Account::factory()->create()->account_number;
+
+        $this->assertValidationOf(
+            'from',
+            '/api/v1/transfer',
+            [
+                'from'   => $account_number,
+                'to'     => $account_number,
+                'amount' => '200',
+            ],
+            'must be different'
+        );
 
     }
 }

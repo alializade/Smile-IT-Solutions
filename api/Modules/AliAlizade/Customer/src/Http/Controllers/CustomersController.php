@@ -2,33 +2,29 @@
 
 namespace AliAlizade\Customer\Http\Controllers;
 
-use AliAlizade\Customer\Models\Account;
-use AliAlizade\Customer\Models\Customer;
+use AliAlizade\Customer\Actions\Account\CreateABankAccountAction;
+use AliAlizade\Customer\Actions\Customer\CreateACustomerAction;
+use AliAlizade\Customer\Http\Requests\CreateCustomerRequest;
+use AliAlizade\Customer\Http\Resources\AccountResource;
+use AliAlizade\Customer\Http\Resources\CustomerResource;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class CustomersController extends Controller
 {
-    public function store(Request $request)
-    {
-        $customer = Customer::query()->create($request->only('name'));
 
-        $account = Account::query()->create([
-            'customer_id'    => $customer->id,
-            'account_number' => sprintf('%s%s', $customer->id, time()),
-            'currency'       => $request->get('currency'),
-            'current_amount' => $request->get('initial_deposit_amount'),
-        ]);
+    public function store(
+        CreateCustomerRequest $request,
+        CreateACustomerAction $createACustomerAction,
+        CreateABankAccountAction $createABankAccountAction
+    ) {
 
-        return response()->json([
-            'status' => 'OK',
-            'data'   => [
-                'customer' => [
-                    'name'    => $customer->name,
-                    'account' => $account,
-                ],
-            ],
+        $customer = $createACustomerAction->handle($request->safe()->toArray());
+
+        $account = $createABankAccountAction->handle($request->safe()->toArray(), $customer);
+
+        return successResponse([
+            'customer' => new CustomerResource($customer),
+            'account'  => new AccountResource($account),
         ], 201);
-
     }
 }

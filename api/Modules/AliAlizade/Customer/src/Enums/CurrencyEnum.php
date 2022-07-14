@@ -1,9 +1,11 @@
 <?php
 
-enum CurrencyEnum
+namespace AliAlizade\Customer\Enums;
+
+enum CurrencyEnum: string
 {
-    case USD;
-    case EUR;
-    case GBP;
-    case CAD;
+    case USD = "USD";
+    case EUR = "EUR";
+    case GBP = "GBP";
+    case CAD = "CAD";
 }

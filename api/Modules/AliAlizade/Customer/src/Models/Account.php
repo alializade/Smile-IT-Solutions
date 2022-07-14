@@ -3,11 +3,20 @@
 namespace AliAlizade\Customer\Models;
 
 use AliAlizade\Customer\Database\Factories\AccountFactory;
+use AliAlizade\Customer\Database\Factories\TransactionFactory;
 use AliAlizade\Customer\Enums\CurrencyEnum;
+use AliAlizade\Transfer\Models\Transaction;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @property $history;
+ * @property $withdraw_transactions;
+ * @property $deposit_transactions;
+ */
 class Account extends Model
 {
     use HasFactory;
@@ -24,6 +33,12 @@ class Account extends Model
         return 'account_number';
     }
 
+    protected function history(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->withdrawTransactions->merge($this->depositTransactions)
+        );
+    }
 
     public function isAbleToTransfer(float $transfer_amount): bool
     {
@@ -36,6 +51,16 @@ class Account extends Model
                     ->withDefault([
                         'name' => 'UNDEFINED',
                     ]);
+    }
+
+    public function withdrawTransactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class, 'from', 'account_number');
+    }
+
+    public function depositTransactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class, 'to', 'account_number');
     }
 
     protected static function newFactory(): AccountFactory

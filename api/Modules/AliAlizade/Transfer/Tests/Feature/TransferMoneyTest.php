@@ -74,9 +74,91 @@ class TransferMoneyTest extends TestCase
                                      $customerB->accounts[0]['account_number'])
                                  ->where('data.transaction.amount', 35)
                                  ->where('data.transaction.status',
-                                     TransactionStatusEnum::SUCCESS->value)
-                                 ->where('data.transaction.to',
-                                     $customerB->accounts[0]['account_number']);
+                                     TransactionStatusEnum::SUCCESS->value);
                  });
+    }
+
+    public function test_from_account_number_is_required()
+    {
+        $this->assertValidationOf(
+            'from',
+            '/api/v1/transfer',
+            [
+                'from'   => '',
+                'to'     => '12341234',
+                'amount' => '250',
+            ],
+            'required'
+        );
+    }
+
+    public function test_from_account_number_must_be_valid()
+    {
+        $this->assertValidationOf(
+            'from',
+            '/api/v1/transfer',
+            [
+                'from'   => '123',
+                'to'     => Account::factory()->create()->account_number,
+                'amount' => '250',
+            ],
+            'is invalid'
+        );
+    }
+
+    public function test_to_account_number_is_required()
+    {
+        $this->assertValidationOf(
+            'to',
+            '/api/v1/transfer',
+            [
+                'from'   => Account::factory()->create()->account_number,
+                'to'     => '',
+                'amount' => '250',
+            ],
+            'required'
+        );
+    }
+
+    public function test_to_account_number_must_be_valid()
+    {
+        $this->assertValidationOf(
+            'to',
+            '/api/v1/transfer',
+            [
+                'from'   => Account::factory()->create()->account_number,
+                'to'     => '123',
+                'amount' => '250',
+            ],
+            'is invalid'
+        );
+    }
+
+    public function test_amount_field_is_required()
+    {
+        $this->assertValidationOf(
+            'amount',
+            '/api/v1/transfer',
+            [
+                'from'   => Account::factory()->create()->account_number,
+                'to'     => Account::factory()->create()->account_number,
+                'amount' => '',
+            ],
+            'required'
+        );
+    }
+
+    public function test_amount_field_is_numeric()
+    {
+        $this->assertValidationOf(
+            'amount',
+            '/api/v1/transfer',
+            [
+                'from'   => Account::factory()->create()->account_number,
+                'to'     => Account::factory()->create()->account_number,
+                'amount' => 'Ali',
+            ],
+            'must be a number'
+        );
     }
 }

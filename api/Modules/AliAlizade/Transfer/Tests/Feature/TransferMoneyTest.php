@@ -13,7 +13,6 @@ class TransferMoneyTest extends TestCase
 {
     use RefreshDatabase;
 
-    // todo: test if the user has enough balanced
     // todo: test if from and to accounts are the same
     // todo: test if currencies are the same
     public function test_money_can_be_transferred_between_two_customers()
@@ -160,5 +159,55 @@ class TransferMoneyTest extends TestCase
             ],
             'must be a number'
         );
+    }
+
+    public function test_a_customer_can_not_transfer_excessive_amount_of_money()
+    {
+        /** @var Customer $customerA */
+        /** @var Customer $customerB */
+
+        $customerA = Customer::factory()
+                             ->has(Account::factory()->set('current_amount', 100))
+                             ->create();
+
+        $customerB = Customer::factory()
+                             ->has(Account::factory()->set('current_amount', 0))
+                             ->create();
+
+        $response = $this->withHeaders([
+            'Accept' => 'application/json',
+        ])->json(
+            'post',
+            '/api/v1/transfer',
+            [
+                'from'   => $customerA->accounts[0]['account_number'],
+                'to'     => $customerB->accounts[0]['account_number'],
+                'amount' => 120,
+            ],
+        );
+
+        $this->assertDatabaseHas('accounts', [
+            'account_number' => $customerA->fresh('accounts')->accounts[0]['account_number'],
+            'current_amount' => 100,
+        ]);
+
+        $this->assertDatabaseHas('accounts', [
+            'account_number' => $customerB->fresh('accounts')->accounts[0]['account_number'],
+            'current_amount' => 0,
+        ]);
+
+        $this->assertDatabaseMissing('transactions', [
+            'from'   => $customerA->accounts[0]['account_number'],
+            'to'     => $customerB->accounts[0]['account_number'],
+            'amount' => 120,
+            'status' => TransactionStatusEnum::SUCCESS,
+        ]);
+
+        $response->assertStatus(422)
+                 ->assertJson(function (AssertableJson $json) {
+                     return $json->hasAll('status')
+                                 ->where('errors.message', trans('Insufficient Money!'));
+                 });
+
     }
 }

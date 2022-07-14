@@ -18,7 +18,6 @@ class Customer extends Model
 
     protected $fillable = ['name'];
 
-
     public function accounts(): HasMany
     {
         return $this->hasMany(Account::class);
